@@ -27,7 +27,7 @@ export default function FileUploader({ onFileUpload, acceptedFileTypes }: FileUp
       {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>Drag and drop some files here, or click to select files</p>
       )}
       <p className="text-sm text-gray-500 mt-2">
         Supported formats: {Object.values(acceptedFileTypes).flat().join(', ')}
