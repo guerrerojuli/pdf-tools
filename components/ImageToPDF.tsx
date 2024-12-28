@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { X } from 'lucide-react'
-import FileUploader from './FileUploader'
-import { convertImageToPDF } from '../../lib/pdfUtils'
+import FileUploader from '@/components/FileUploader'
+import { convertImageToPDF } from '@/lib/pdfUtils'
 
 export default function ImageToPDF() {
   const [file, setFile] = useState<File | null>(null)

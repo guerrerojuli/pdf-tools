@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { X } from 'lucide-react'
-import FileUploader from './FileUploader'
-import { mergePDFsAndImages } from '../../lib/pdfUtils'
+import FileUploader from '@/components/FileUploader'
+import { mergePDFsAndImages } from '@/lib/pdfUtils'
 
 export default function PDFImageMerger() {
   const [files, setFiles] = useState<File[]>([])

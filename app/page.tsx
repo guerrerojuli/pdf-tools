@@ -1,9 +1,9 @@
 'use client'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import PDFMerger from './components/PDFMerger'
-import ImageToPDF from './components/ImageToPDF'
-import PDFImageMerger from './components/PDFImageMerger'
+import PDFMerger from '@/components/PDFMerger'
+import ImageToPDF from '@/components/ImageToPDF'
+import PDFImageMerger from '@/components/PDFImageMerger'
 
 export default function Home() {
   return (
