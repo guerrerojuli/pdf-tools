@@ -5,7 +5,7 @@ import PDFImageMerger from '@/components/PDFImageMerger'
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24">
+    <main className="flex min-h-dvh flex-col items-center justify-center p-4 md:p-24">
       <h1 className="text-4xl font-bold mb-8">PDF Tools</h1>
       <Tabs defaultValue="merge-pdf" className="w-full max-w-3xl">
         <TabsList className="flex-col md:grid md:grid-cols-3 w-full h-full">
