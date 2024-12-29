@@ -11,7 +11,7 @@ export default function PDFImageMerger() {
   const [isProcessing, setIsProcessing] = useState(false)
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    const validFiles = uploadedFiles.filter(file => 
+    const validFiles = uploadedFiles.filter(file =>
       file.type === 'application/pdf' || file.type.startsWith('image/')
     )
     setFiles((prevFiles) => [...prevFiles, ...validFiles])
@@ -41,25 +41,23 @@ export default function PDFImageMerger() {
 
   return (
     <div className="space-y-4">
-      <FileUploader 
-        onFileUpload={handleFileUpload} 
-        acceptedFileTypes={{ 
+      <FileUploader
+        onFileUpload={handleFileUpload}
+        acceptedFileTypes={{
           'application/pdf': ['.pdf'],
           'image/*': ['.png', '.jpg', '.jpeg', '.gif']
-        }} 
+        }}
       />
-      <div className="mt-4 space-y-2">
-        {files.map((file, index) => (
-          <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
-            <p className="text-sm text-gray-600">{file.name}</p>
-            <Button variant="ghost" size="icon" onClick={() => handleRemoveFile(index)}>
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-      </div>
-      <Button 
-        onClick={handleMerge} 
+      {files.map((file, index) => (
+        <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
+          <p className="text-sm text-gray-600">{file.name}</p>
+          <Button variant="ghost" size="icon" onClick={() => handleRemoveFile(index)}>
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      ))}
+      <Button
+        onClick={handleMerge}
         disabled={files.length === 0 || isProcessing}
       >
         {isProcessing ? 'Processing...' : 'Merge and Download'}

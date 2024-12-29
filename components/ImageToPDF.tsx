@@ -49,8 +49,8 @@ export default function ImageToPDF() {
           </Button>
         </div>
       )}
-      <Button 
-        onClick={handleConvert} 
+      <Button
+        onClick={handleConvert}
         disabled={!file || isProcessing}
       >
         {isProcessing ? 'Processing...' : 'Convert and Download'}

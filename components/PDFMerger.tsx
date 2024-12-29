@@ -41,18 +41,16 @@ export default function PDFMerger() {
   return (
     <div className="space-y-4">
       <FileUploader onFileUpload={handleFileUpload} acceptedFileTypes={{ 'application/pdf': ['.pdf'] }} />
-      <div className="mt-4 space-y-2">
-        {files.map((file, index) => (
-          <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
-            <p className="text-sm text-gray-600">{file.name}</p>
-            <Button variant="ghost" size="icon" onClick={() => handleRemoveFile(index)}>
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-      </div>
-      <Button 
-        onClick={handleMerge} 
+      {files.map((file, index) => (
+        <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
+          <p className="text-sm text-gray-600">{file.name}</p>
+          <Button variant="ghost" size="icon" onClick={() => handleRemoveFile(index)}>
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      ))}
+      <Button
+        onClick={handleMerge}
         disabled={files.length === 0 || isProcessing}
       >
         {isProcessing ? 'Processing...' : 'Merge and Download'}
