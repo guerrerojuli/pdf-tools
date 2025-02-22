@@ -4,9 +4,9 @@ import { useState, useTransition } from 'react'
 import { X } from 'lucide-react'
 
 import { Button } from "@/components/ui/button"
-import FileUploader from '@/components/FileUploader'
+import { FileUploader } from '@/components/file-uploader'  
 
-import { mergePDFsAndImages } from '@/lib/pdfUtils'
+import { mergeToPDF } from '@/lib/pdfUtils'
 
 export function Merger() {
   const [files, setFiles] = useState<File[]>([])
@@ -28,7 +28,7 @@ export function Merger() {
 
     startProcessing(async () => {
       try {
-        const mergedPdf = await mergePDFsAndImages(files)
+        const mergedPdf = await mergeToPDF(files)
         const blob = new Blob([mergedPdf], { type: 'application/pdf' })
         const link = document.createElement('a')
 
@@ -48,7 +48,7 @@ export function Merger() {
         onFileUpload={handleFileUpload}
         acceptedFileTypes={{
           'application/pdf': ['.pdf'],
-          'image/*': ['.png', '.jpg', '.jpeg', '.gif']
+          'image/*': ['.png', '.jpg', '.jpeg']
         }}
       />
       {files.map((file, index) => (

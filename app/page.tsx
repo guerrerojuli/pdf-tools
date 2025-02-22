@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Merger }from '@/components/merger'
-import ImageToPDF from '@/components/ImageToPDF'
+import { ImageToPDF } from '@/components/image-to-pdf'
 
 export default function Page() {
   return (

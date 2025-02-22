@@ -6,7 +6,7 @@ interface FileUploaderProps {
   acceptedFileTypes: Record<string, string[]>
 }
 
-export default function FileUploader({ onFileUpload, acceptedFileTypes }: FileUploaderProps) {
+export function FileUploader({ onFileUpload, acceptedFileTypes }: FileUploaderProps) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     onFileUpload(acceptedFiles)
   }, [onFileUpload])

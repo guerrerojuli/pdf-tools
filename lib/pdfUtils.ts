@@ -1,17 +1,5 @@
 import { PDFDocument } from 'pdf-lib'
 
-export async function mergePDFs(pdfBuffers: ArrayBuffer[]): Promise<Uint8Array> {
-  const mergedPdf = await PDFDocument.create()
-
-  for (const pdfBuffer of pdfBuffers) {
-    const pdf = await PDFDocument.load(pdfBuffer)
-    const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices())
-    copiedPages.forEach((page) => mergedPdf.addPage(page))
-  }
-
-  return mergedPdf.save()
-}
-
 export async function convertImageToPDF(imageFile: File): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.create()
   const imageBytes = await imageFile.arrayBuffer()
@@ -38,7 +26,7 @@ export async function convertImageToPDF(imageFile: File): Promise<Uint8Array> {
   return pdfDoc.save()
 }
 
-export async function mergePDFsAndImages(files: File[]): Promise<Uint8Array> {
+export async function mergeToPDF(files: File[]): Promise<Uint8Array> {
   const mergedPdf = await PDFDocument.create()
 
   for (const file of files) {
