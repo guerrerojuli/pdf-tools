@@ -1,14 +1,16 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
+import { useState, useTransition } from 'react'
 import { X } from 'lucide-react'
+
+import { Button } from "@/components/ui/button"
 import FileUploader from '@/components/FileUploader'
+
 import { mergePDFsAndImages } from '@/lib/pdfUtils'
 
-export default function PDFImageMerger() {
+export function Merger() {
   const [files, setFiles] = useState<File[]>([])
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [isProcessing, startProcessing] = useTransition()
 
   const handleFileUpload = (uploadedFiles: File[]) => {
     const validFiles = uploadedFiles.filter(file =>
@@ -21,22 +23,23 @@ export default function PDFImageMerger() {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index))
   }
 
-  const handleMerge = async () => {
+  const handleMerge = () => {
     if (files.length === 0) return
-    setIsProcessing(true)
-    try {
-      const mergedPdf = await mergePDFsAndImages(files)
-      const blob = new Blob([mergedPdf], { type: 'application/pdf' })
-      const link = document.createElement('a')
-      link.href = URL.createObjectURL(blob)
-      link.download = 'merged_pdf_and_images.pdf'
-      link.click()
-    } catch (error) {
-      console.error('Error merging PDFs and images:', error)
-      alert('An error occurred while merging the files. Please try again.')
-    } finally {
-      setIsProcessing(false)
-    }
+
+    startProcessing(async () => {
+      try {
+        const mergedPdf = await mergePDFsAndImages(files)
+        const blob = new Blob([mergedPdf], { type: 'application/pdf' })
+        const link = document.createElement('a')
+
+        link.href = URL.createObjectURL(blob)
+        link.download = 'merged.pdf'
+        link.click()
+      } catch (error) {
+        console.error('Error merging PDFs and images:', error)
+        alert('An error occurred while merging the files. Please try again.')
+      }
+    })
   }
 
   return (
