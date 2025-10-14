@@ -30,7 +30,7 @@ export function Compressor() {
     startProcessing(async () => {
       try {
         const pdfBuffer = await compressPdf(file, quality)
-        const blob = new Blob([pdfBuffer], { type: 'application/pdf' })
+        const blob = new Blob([pdfBuffer as BlobPart], { type: 'application/pdf' })
         const link = document.createElement('a')
 
         link.href = URL.createObjectURL(blob)

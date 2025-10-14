@@ -28,7 +28,7 @@ export function ImageToPDF() {
     startProcessing(async () => {
       try {
         const pdfBuffer = await convertImageToPDF(file)
-        const blob = new Blob([pdfBuffer], { type: 'application/pdf' })
+        const blob = new Blob([pdfBuffer as BlobPart], { type: 'application/pdf' })
         const link = document.createElement('a')
         link.href = URL.createObjectURL(blob)
         link.download = `${file.name.split('.')[0]}.pdf`

@@ -1,6 +1,4 @@
 import { PDFDocument } from 'pdf-lib'
-import { getDocument } from "pdfjs-dist"
-import "pdfjs-dist/legacy/build/pdf.worker.mjs"
 
 export async function convertImageToPDF(imageFile: File): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.create()
@@ -63,6 +61,8 @@ export async function mergeToPDF(files: File[]): Promise<Uint8Array> {
 }
 
 export async function compressPdf(file: File, quality: number): Promise<Uint8Array> {
+  const { getDocument } = await import('pdfjs-dist')
+  
   const arrayBuffer = await file.arrayBuffer()
 
   const pdf = await getDocument({ data: arrayBuffer }).promise
@@ -84,6 +84,7 @@ export async function compressPdf(file: File, quality: number): Promise<Uint8Arr
     await page.render({
       canvasContext: context,
       viewport,
+      canvas,
     }).promise
 
     const dataUrl = canvas.toDataURL('image/jpeg', quality)

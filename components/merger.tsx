@@ -29,7 +29,7 @@ export function Merger() {
     startProcessing(async () => {
       try {
         const mergedPdf = await mergeToPDF(files)
-        const blob = new Blob([mergedPdf], { type: 'application/pdf' })
+        const blob = new Blob([mergedPdf as BlobPart], { type: 'application/pdf' })
         const link = document.createElement('a')
 
         link.href = URL.createObjectURL(blob)
